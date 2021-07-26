@@ -1,18 +1,13 @@
--- go ahead patch it developer i will make another one much better
-
-local Players: Players = game:GetService("Players")
+--##############################################################################--local Players: Players = game:GetService("Players")
 local RunService: RunService = game:GetService("RunService")
 local TweenService: TweenService = game:GetService("TweenService")
 local UserInputService: UserInputService = game:GetService("UserInputService")
 local CoreGui = game:GetService("CoreGui")
-
 local LocalPlayer = Players.LocalPlayer;
-
--- variables
-
+--##############################################################################--
 local speedhack = false
 local noclipping = false
-
+--##############################################################################--
 local function displaymessage(message)
 	for index, value in pairs(CoreGui:GetChildren()) do
 		if value.Name == "penis penis penis lol xd" then
@@ -49,13 +44,10 @@ local function displaymessage(message)
 		}):Play()
 	end
 end
-
--- method hook
-
+--##############################################################################--
 local rawmetatatble = getrawmetatable(game)
 setreadonly(rawmetatatble, false)
 local defaultmetamethod = rawmetatatble.__namecall
-
 rawmetatatble.__namecall = newcclosure(function(self, ...)
 	local tuple = {...};
 	local namecallmethod = getnamecallmethod();
@@ -66,22 +58,17 @@ rawmetatatble.__namecall = newcclosure(function(self, ...)
 
 	return defaultmetamethod(self, unpack(tuple));
 end)
-
--- bindable event
-
+--##############################################################################--
 local BindableEvent = Instance.new("BindableEvent")
 BindableEvent.Name = "BindableEvent"
 BindableEvent.Parent = nil
-
 coroutine.resume(coroutine.create(function()
 	while true do
 		BindableEvent:Fire()
 		wait(1 / 30)
 	end
 end))
-
--- user input
-
+--##############################################################################--
 UserInputService.InputBegan:Connect(function(InputObject: InputObject, gameProcessedEvent: boolean)
 	if not gameProcessedEvent then
 		if InputObject.UserInputType == Enum.UserInputType.Keyboard and InputObject.UserInputState == Enum.UserInputState.Begin then
@@ -95,14 +82,13 @@ UserInputService.InputBegan:Connect(function(InputObject: InputObject, gameProce
 		end
 	end
 end)
-
 UserInputService.InputEnded:Connect(function(InputObject: InputObject)
 	if InputObject.KeyCode == Enum.KeyCode.LeftShift then
 		speedhack = false
 		displaymessage("speed hack disabled")
 	end
 end)
-
+--##############################################################################--
 RunService.Stepped:Connect(function()
 	local Character = LocalPlayer.Character
 	assert(Character)
@@ -137,3 +123,4 @@ RunService.Stepped:Connect(function()
 		end
 	end
 end)
+--##############################################################################--
