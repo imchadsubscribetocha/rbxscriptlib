@@ -75,11 +75,7 @@ UserInputService.InputBegan:Connect(function(InputObject: InputObject, gameProce
 		if InputObject.UserInputType == Enum.UserInputType.Keyboard and InputObject.UserInputState == Enum.UserInputState.Begin then
 			if InputObject.KeyCode == Enum.KeyCode.X then
 				noclipping = not noclipping
-				if noclipping == true then
-					displaymessage("noclip enabled")
-				else
-					displaymessage("noclip disabled")
-				end
+				displaymessage("noclip toggled to " .. noclipping == true and "true" or "false")
 			elseif InputObject.KeyCode == Enum.KeyCode.LeftShift then
 				speedhack = true
 				displaymessage("speed hack enabled")
